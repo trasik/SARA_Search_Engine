@@ -1,0 +1,125 @@
+* {
+  margin:0;
+  padding:0;
+}
+
+body{
+  background-image: url(bg.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-color:#464646;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  width:100%;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #222;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
+  background-color:#3498DB;
+}
+
+.dropdown-content {
+  display: none;
+  position:absolute;
+  background-color: #222;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #3498DB;
+}
+
+.show {
+  display: block;
+}
+
+.container-search {
+  width: 40%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.search {
+  position:relative;
+  width:100%;
+}
+
+.search input[type=text]{
+  float: left;
+  width: 100%;
+  border: 3px solid #3498DB;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+}
+
+.search button[type=submit] {
+  position: absolute;
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #3498DB;
+  background: #3498DB;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.search input[type=text]:hover {
+  border: 3px solid #2F8AC8;
+}
+
+.search button[type=submit]:hover {
+  background-color: #2F8AC8;
+}
