@@ -19,7 +19,7 @@ body{
 
 .navbar {
   overflow: hidden;
-  background-color: #222;
+  background-color:rgba(0, 0, 0, 0.5);
 }
 
 .navbar a {
@@ -29,6 +29,11 @@ body{
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+}
+
+.navbar a.active {
+  background-color: #3498DB;
+  color: white;
 }
 
 .dropdown {
@@ -125,19 +130,47 @@ body{
 }
 
 .container-srcres {
-  width: 90%;
+  width: 100%;
   position: absolute;
-  background-color:white;
+  background-color:rgba(0,0,0, 0.5);
   border-radius: 5px;
   top:50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-.container-srcres h1 {
-  text-align: center;
-}
-
 .src-res {
   position:relative;
+  width:100%;
+}
+
+.container-srcres h1 {
+  padding-top: 10px;
+  text-align: center;
+  color:white;
+}
+
+.src-res ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.src-res ul li a {
+  display: block;
+  color: green;
+  text-decoration: none;
+}
+
+.src-res ul li h2 {
+  color: #3498DB;
+}
+
+
+.src-res ul li{
+  position:relative;
+  padding-left:100px;
+  color:white;
+  display: block;
+  text-decoration: none;
 }
