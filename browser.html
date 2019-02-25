@@ -2,56 +2,75 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>SARA-About</title>
+    <title>SARA-Browser Information</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <div class="container">
-      <div class="navbar">
-        <div class="dropdown">
-          <button class="dropbtn" onclick="myFunction('drop1')">Course
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content" id="drop1">
-            <a href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">Zybooks</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn" onclick="myFunction('drop2')">Search
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content" id="drop2">
-            <a href="#">Phase 1 Search</a>
-            <a href="#">Phase 2 Search</a>
-            <a href="#">Phase 3 Search</a>
-            <a href="#">Phase 4 Search</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn" onclick="myFunction('drop3')">Browser
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content" id="drop3">
-            <a href="#">Browser Information</a>
-            <a href="#">Window Information</a>
-            <a href="#">Screen Information</a>
-            <a href="#">Location</a>
-            <a href="#">Geolocation</a>
-          </div>
-        </div>
-        <div class="dropdown">
-          <button class="dropbtn" onclick="myFunction('drop4')">About
-            <i class="fa fa-caret-down"></i>
-          </button>
-          <div class="dropdown-content" id="drop4">
-            <a href="#">About Us</a>
-            <a href="#">Contact Us</a>
-          </div>
+    <div class="topnav" id="myTopnav">
+      <a href="index.html" class="active">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Course
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">Zybooks</a>
         </div>
       </div>
+      <div class="dropdown">
+        <button class="dropbtn">Search
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="results.html">Phase 2 Search</a>
+          <a href="#">Phase 3 Search</a>
+          <a href="#">Phase 4 Search</a>
+          <a href="#">Phase 5 Search</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Browser
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="browser.html#brinfo">Browser Information</a>
+          <a href="browser.html#winfo">Window Information</a>
+          <a href="browser.html#sinfo">Screen Information</a>
+          <a href="browser.html#linfo">Location</a>
+          <a href="browser.html#geoinfo">Geolocation</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">About
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="about.html">About Us</a>
+          <a href="about.html">Contact Us</a>
+        </div>
+      </div>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
+
     <script src="script.js"></script>
+
+    <div class="container-browser">
+      <section class="binfo">
+        <h2>Browser Information</h2>
+          <p id="brinfo"></p>
+        <h2>Window Information</h2>
+          <p id="winfo"></p>
+        <h2>Screen Information</h2>
+          <p id="sinfo"></p>
+        <h2>Location</h2>
+          <p id="linfo"></p>
+        <h2>Geolocation</h2>
+          <p>Click the button below to show your Geolocation</p>
+          <button class="btn-show" onclick="getLocation()">Show</button>
+          <p id="geoinfo"></p>
+        </section>
+    </div>
+    <script src="bscript.js"></script>
   </body>
 </html>
