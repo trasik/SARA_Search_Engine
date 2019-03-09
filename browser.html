@@ -8,31 +8,25 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
-    <div class="topnav" id="myTopnav">
+    <div class="navbar" id="myNav">
       <a href="index.html" class="active">Home</a>
       <div class="dropdown">
-        <button class="dropbtn">Course
-          <i class="fa fa-caret-down"></i>
-        </button>
+        <button class="dropbtn">Course <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
           <a href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">Zybooks</a>
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">Search
-          <i class="fa fa-caret-down"></i>
-        </button>
+        <button class="dropbtn">Search <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
-          <a href="results.html">Phase 2 Search</a>
-          <a href="#">Phase 3 Search</a>
-          <a href="#">Phase 4 Search</a>
-          <a href="#">Phase 5 Search</a>
+          <a href="results.html">Phase 2: Fixed Results</a>
+          <a href="#">Phase 3: From File</a>
+          <a href="#">Phase 4: Google API</a>
+          <a href="#">Phase 5: Our Search Engine</a>
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">Browser
-          <i class="fa fa-caret-down"></i>
-        </button>
+        <button class="dropbtn">Browser <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
           <a href="browser.html#brinfo">Browser Information</a>
           <a href="browser.html#winfo">Window Information</a>
@@ -42,9 +36,7 @@
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">About
-          <i class="fa fa-caret-down"></i>
-        </button>
+        <button class="dropbtn">About <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
           <a href="about.html">About Us</a>
           <a href="about.html">Contact Us</a>
@@ -53,9 +45,7 @@
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 
-    <script src="script.js"></script>
-
-    <div class="container-browser">
+    <div class="container">
       <section class="binfo">
         <h2>Browser Information</h2>
           <p id="brinfo"></p>
@@ -71,6 +61,7 @@
           <p id="geoinfo"></p>
         </section>
     </div>
+    <script src="script.js"></script>
     <script src="bscript.js"></script>
   </body>
 </html>

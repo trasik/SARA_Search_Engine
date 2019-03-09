@@ -1,3 +1,4 @@
+//The Start of the Browser Page
 var w = window.innerWidth
 || document.documentElement.clientWidth
 || document.body.clientWidth;
@@ -47,3 +48,4 @@ function showPosition(position) {
   x.innerHTML = "Latitude: " + position.coords.latitude +
                 "<br>Longitude: " + position.coords.longitude;
 }
+//The End of the Browser Page
