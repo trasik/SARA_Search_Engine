@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>SARA-Search Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style_res.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+    <div class="navbar" id="myNav">
+      <a href="index.html" class="active">Home</a>
+      <div class="dropdown">
+        <button class="dropbtn">Course
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">Zybooks</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Search
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="results.html">Phase 2: Fixed Results</a>
+          <a href="results2.html">Phase 3: From File</a>
+          <a href="results3.html">Phase 4: Google API</a>
+          <a href="#">Phase 5: Our Search Engine</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">Browser
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="browser.html#brinfo">Navigator</a>
+          <a href="browser.html#winfo">Window</a>
+          <a href="browser.html#sinfo">Screen</a>
+          <a href="browser.html#linfo">Location</a>
+          <a href="browser.html#geoinfo">Geolocation</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <button class="dropbtn">About
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="about.html">About Us</a>
+          <a href="about.html">Contact Us</a>
+        </div>
+      </div>
+      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+    </div>
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/FileSaver.js"></script>
+
+    <div class="container-search">
+      <section class="search">
+        <form name="sform" action="" method="post" autocomplete="off">
+          <input type="text" placeholder="Pizza" name="search-txt">
+          <button type="submit" class="btn-submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <div class="container-srcres">
+      <h1>Search Results</h1>
+      <div id="download_buttons">
+      <section id="upload">
+        <button type="button" class="btn-up" onclick="loadJSON()">Upload from JSON Format</button>
+        <button type="button" class="btn-up" onclick="loadCSV()">Upload from CSV Format</button>
+        <button type="button" class="btn-up" onclick="loadXML()">Upload from XML Format</button>
+      </section>
+      <section id="download">
+        <button type="button" class="btn-down" onclick="downloadJSON()">Download to JSON Format</button>
+        <button type="button" class="btn-down" onclick="downloadCSV()">Download to CSV Format</button>
+        <button type="button" class="btn-down" onclick="downloadXML()">Download to XML Format</button>
+      </section>
+    </div>
+      <section class="src-res" id="results_info">
+      </section>
+    </div>
+  </body>
+</html>

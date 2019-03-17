@@ -22,11 +22,11 @@ scr.innerHTML = "Screen Width: " + screen.width + "<br />"
 var browser = document.getElementById("brinfo");
 browser.innerHTML = "Are cookies enabled? " + navigator.cookieEnabled + "<br />"
                     + "Is Java enabled? " + navigator.javaEnabled() + "<br />"
-                    + "Browser Name: " + navigator.appName + "<br />"
-                    + "Browser Codename: " + navigator.appCodeName + "<br />"
-                    + "Browser Engine: " + navigator.product + "<br />"
-                    + "Browser Platform: " + navigator.platform + "<br />"
-                    + "Browser Engine: " + navigator.language + "<br />";
+                    + "Navigator Name: " + navigator.appName + "<br />"
+                    + "Navigator Codename: " + navigator.appCodeName + "<br />"
+                    + "Navigator Engine: " + navigator.product + "<br />"
+                    + "Navigator Platform: " + navigator.platform + "<br />"
+                    + "Navigator Engine: " + navigator.language + "<br />";
 
 var loc = document.getElementById("linfo");
 loc.innerHTML = "Page Location: " + window.location.href + "<br />"

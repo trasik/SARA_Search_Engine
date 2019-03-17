@@ -4,7 +4,7 @@
 }
 
 body{
-  background-image: url(bg4.jpg);
+  background-image: url(../bg/bg4.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -132,35 +132,38 @@ body{
 }
 
 .search input[type=text]{
-  float: left;
+  outline: 0;
+  height: 42px;
   width: 100%;
-  border: 3px solid #3498DB;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px;
-  outline: none;
-  color: black;
+  line-height: 42px;
+  padding: 0 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #212121;
+  border: 0;
+  float: left;
+  -webkit-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 
-.search button[type=submit] {
-  position: absolute;
-  right: -50px;
-  width: 40px;
-  height: 36px;
-  border: 1px solid #3498DB;
-  background: #3498DB;
+.search .btn-submit {
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  position:absolute;
+  height: 42px;
+  width: 42px;
   text-align: center;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
+  border: 0;
+  color: #FFF;
+  font-size: 19px;
+  text-rendering: auto;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: background-color .2s ease;
+  transition: background-color .2s ease;
+  -webkit-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 
-.search input[type=text]:hover {
-  border: 3px solid #2F8AC8;
-}
-
-.search button[type=submit]:hover {
+.search .btn-submit:hover {
   background-color: #2F8AC8;
 }
 
@@ -171,7 +174,7 @@ body{
   border-radius: 5px;
   top:20%;
   left: 5%;
-  overflow:auto;
+  overflow:hidden;
   z-index:-1;
 }
 
@@ -209,9 +212,59 @@ body{
   color:white;
   display: block;
   text-decoration: none;
-  word-wrap: break-word;
 }
 
+#download_buttons {
+  position: relative;
+  z-index:-1;
+}
+
+.btn-down, .btn-up {
+  display:inline-block;
+  background-color:#3498DB;
+  padding:10px 20px;
+  border:1.6px solid #FFFFFF;
+  margin:3px 5px 5px 3px;
+  border-radius:2px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-size:20px;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+  min-width:32.5%;
+}
+
+.btn-down:hover, .btn-up:hover {
+  color:#3498DB;
+  background-color:#FFFFFF;
+}
+
+@media screen and (max-width: 1461px) {
+  .btn-up, .btn-down {
+    display:block;
+    width: 100%;
+  }
+}
+
+.page_check {
+  position: absolute;
+  margin-top: 8px;
+  margin-left: 5px;
+  z-index: 1;
+}
+
+.cse .gsc-control-cse, .gsc-control-cse {
+  background-color:transparent !important;
+}
+
+.gsc-results .gsc-webResult {
+  background-color:transparent !important;
+}
+
+.gsc-cursor-page{
+  background-color:transparent !important;
+}
 @keyframes fade {
   from {
     opacity: 0;

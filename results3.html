@@ -2,22 +2,26 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>SARA-Browser Information</title>
+    <title>SARA-Search Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style_res.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
     <div class="navbar" id="myNav">
       <a href="index.html" class="active">Home</a>
       <div class="dropdown">
-        <button class="dropbtn">Course <i class="fa fa-caret-down"></i></button>
+        <button class="dropbtn">Course
+          <i class="fa fa-caret-down"></i>
+        </button>
         <div class="dropdown-content">
           <a href="https://learn.zybooks.com/zybook/CUNYCSCI355TeitelmanSpring2019" target="_blank">Zybooks</a>
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">Search <i class="fa fa-caret-down"></i></button>
+        <button class="dropbtn">Search
+          <i class="fa fa-caret-down"></i>
+        </button>
         <div class="dropdown-content">
           <a href="results.html">Phase 2: Fixed Results</a>
           <a href="results2.html">Phase 3: From File</a>
@@ -26,7 +30,9 @@
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">Browser <i class="fa fa-caret-down"></i></button>
+        <button class="dropbtn">Browser
+          <i class="fa fa-caret-down"></i>
+        </button>
         <div class="dropdown-content">
           <a href="browser.html#brinfo">Navigator</a>
           <a href="browser.html#winfo">Window</a>
@@ -36,7 +42,9 @@
         </div>
       </div>
       <div class="dropdown">
-        <button class="dropbtn">About <i class="fa fa-caret-down"></i></button>
+        <button class="dropbtn">About
+          <i class="fa fa-caret-down"></i>
+        </button>
         <div class="dropdown-content">
           <a href="about.html">About Us</a>
           <a href="about.html">Contact Us</a>
@@ -45,23 +53,31 @@
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 
-    <div class="container">
-      <section class="binfo">
-        <h2>Navigator Information</h2>
-          <p id="brinfo"></p>
-        <h2>Window Information</h2>
-          <p id="winfo"></p>
-        <h2>Screen Information</h2>
-          <p id="sinfo"></p>
-        <h2>Location</h2>
-          <p id="linfo"></p>
-        <h2>Geolocation</h2>
-          <p>Click the button below to show your Geolocation</p>
-          <button class="btn-show" onclick="getLocation()">Show</button>
-          <p id="geoinfo"></p>
-        </section>
-    </div>
     <script src="scripts/script.js"></script>
-    <script src="scripts/bscript.js"></script>
+
+    <div class="container-search">
+      <section class="search">
+        <form action ="" method="GET" autocomplete="off">
+          <input type="text" class="input" name="q" placeholder="Type to Search...">
+          <button type="submit" class="btn-submit">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+      </section>
+    </div>
+    <script>
+    (function() {
+      var cx = '017797819528819750857:jmzwxfbfxqe';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+    </script>
+    <div class="container-srcres">
+      <gcse:searchresults-only></gcse:searchresults-only>
+    </div>
   </body>
 </html>

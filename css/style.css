@@ -4,7 +4,7 @@
 }
 
 body{
-  background-image: url(bg4.jpg);
+  background-image: url(../bg/bg4.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -120,7 +120,7 @@ body{
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-60%, -50%);
 }
 
 .search {
@@ -129,35 +129,38 @@ body{
 }
 
 .search input[type=text]{
-  float: left;
+  outline: 0;
+  height: 42px;
   width: 100%;
-  border: 3px solid #3498DB;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px;
-  outline: none;
-  color: black;
+  line-height: 42px;
+  padding: 0 16px;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #212121;
+  border: 0;
+  float: left;
+  -webkit-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
 }
 
-.search button[type=submit] {
-  position: absolute;
-  right: -50px;
-  width: 40px;
-  height: 36px;
-  border: 1px solid #3498DB;
-  background: #3498DB;
+.search .btn-submit {
+  outline: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  position:absolute;
+  height: 42px;
+  width: 42px;
   text-align: center;
-  color: #fff;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 20px;
+  border: 0;
+  color: #FFF;
+  font-size: 19px;
+  text-rendering: auto;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-transition: background-color .2s ease;
+  transition: background-color .2s ease;
+  -webkit-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
 }
 
-.search input[type=text]:hover {
-  border: 3px solid #2F8AC8;
-}
-
-.search button[type=submit]:hover {
+.search .btn-submit:hover {
   background-color: #2F8AC8;
 }
 
@@ -184,10 +187,12 @@ body{
 .binfo h2 {
   padding-top: 10px;
   color:#3498DB;
+  font-size: 30px;
 }
 
 .binfo p {
   color:white;
+  font-size: 17px;
 }
 
 .binfo .btn-show {
@@ -210,11 +215,13 @@ body{
 .aboutinfo h2 {
   padding:10px 10px 0px 10px;
   color:#3498DB;
+  font-size: 17px;
 }
 
 .aboutinfo p {
   padding:10px 10px 0px 10px;
   color:white;
+  font-size: 17px;
 }
 
 .aboutinfo a {
