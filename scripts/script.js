@@ -305,8 +305,8 @@ function clearPageList() {
 }
 
 function showPage(id) {
-  var apiKey = 'AIzaSyDNZUOIVXdHVDKtNjJxEaLRi883a7z7Iec';
-  var cx = '017797819528819750857:jmzwxfbfxqe';
+  var apiKey = '';
+  var cx = '';
   var query = document.getElementById('src-text').value;
   var x = (id * 10) - 9;
   var items = "";
