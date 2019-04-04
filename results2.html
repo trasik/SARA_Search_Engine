@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>SARA-Search Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style_res.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
     <div class="navbar" id="myNav">
@@ -46,15 +47,12 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <a href="about.html">About Us</a>
-          <a href="about.html">Contact Us</a>
+          <a href="about.html#about_info">About Us</a>
+          <a href="about.html#contact_info">Contact Us</a>
         </div>
       </div>
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
-
-    <script src="scripts/script.js"></script>
-    <script src="scripts/FileSaver.js"></script>
 
     <div class="container-search">
       <section class="search">
@@ -69,20 +67,20 @@
 
     <div class="container-srcres">
       <h1>Search Results</h1>
-      <div id="download_buttons">
-      <section id="upload">
-        <button type="button" class="btn-up" onclick="loadJSON()">Upload from JSON Format</button>
-        <button type="button" class="btn-up" onclick="loadCSV()">Upload from CSV Format</button>
-        <button type="button" class="btn-up" onclick="loadXML()">Upload from XML Format</button>
-      </section>
-      <section id="download">
-        <button type="button" class="btn-down" onclick="downloadJSON()">Download to JSON Format</button>
-        <button type="button" class="btn-down" onclick="downloadCSV()">Download to CSV Format</button>
-        <button type="button" class="btn-down" onclick="downloadXML()">Download to XML Format</button>
-      </section>
-    </div>
+      <div id="up-down-btns">
+        <label for="files" id="upload"><i class="fas fa-file-upload"></i>  Upload</label>
+        <input type="file" id="files" name="f-upload" accept=".json,.xml,.csv" onchange="handleFileSelect()">
+        <button type="button" name="f-download" id="download" onclick="fileDownload()"><i class="fas fa-file-download"></i>  Download to</button>
+        <select name="options" id="options">
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+          <option value="xml">XML</option>
+        </select>
+      </div>
       <section class="src-res" id="results_info">
       </section>
     </div>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/FileSaver.js"></script>
   </body>
 </html>

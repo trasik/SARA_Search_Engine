@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>SARA-About</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
     <div class="navbar" id="myNav">
@@ -38,31 +39,50 @@
       <div class="dropdown">
         <button class="dropbtn">About <i class="fa fa-caret-down"></i></button>
         <div class="dropdown-content">
-          <a href="about.html">About Us</a>
-          <a href="about.html">Contact Us</a>
+          <a href="about.html#about_info">About Us</a>
+          <a href="about.html#contact_info">Contact Us</a>
         </div>
       </div>
-      <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+      <a href="javascript:void(0);" style="font-size:14px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
     <script src="scripts/script.js"></script>
     <div class="container">
-      <section class="aboutinfo">
-        <h2>About Us</h2>
-        <p> Karanvir Singh is currently pursuing a Bachelor's of Science in Computer Science at CUNY Queens College. He first began programming in Alex Ryba's Algorithmic Problem Solving class,
-          playing around with C++ and basic commands of the Linux System. Since then, he has gained experience in Object-Oriented Languages such as C++ and Java, web-based developmental
-          languages such as HTML5, CSS3, and JavaScript, scripting languages such as Python, and the old-age Assembly Language. Upon graduaton, he hopes to become a Software Engineer specializing in Security.
-          He is expected to graduate in May 2020.
-        </p>
-        <br>
-        <p> Torendra Rasik is currently pursuing a Bachelor's of Science in Computer Science at CUNY Queens College. He got his introduction to programming during his high school years, primarily in Java.
-          Becoming a programmer at an earlier age than most, he was able to obtain a vast amount of knowledge about the Java API. Since then, he has gained working knowledge of Java and C++, both being Object-Oriented Languages.
-          He has gained working knowldge of HTML5, CSS3, and JavasScript, along with Assembly Language. Upon graduation, he hopes to become a Software Developer that can impact users around the world. He is expected to graduate in December 2020.
-          <p id="aboutinfo"></p>
-        <h2>Contact Us</h2>
-        <p><span id="atsymbol">@</span> Karanvir: <a href="mailto:ksin3798@gmail.com">ksin3798@gmail.com</a></p>
-        <p><span id="atsymbol">@</span> Torendra: <a href="mailto:torendrarasik@gmail.com">torendrarasik@gmail.com</a></p>
-          <p id="contactinfo"></p>
-        </section>
+      <h1 id="about_info">About Us</h1>
+      <div class="row">
+        <div class="column">
+          <div class="card">
+            <img src="bg/karanvir.jpg" alt="karanvir">
+            <div class="about_container">
+              <h1>Karanvir Singh</h1>
+              <h2 class="title">Developer</h2>
+              <p>Karanvir Singh is currently pursuing a Bachelor's of Science in Computer Science at CUNY Queens College. He first began programming in Alex Ryba's Algorithmic Problem Solving class,
+              playing around with C++ and basic commands of the Linux System. Since then, he has gained experience in Object-Oriented Languages such as C++ and Java, web-based developmental
+              languages such as HTML5, CSS3, and JavaScript, scripting languages such as Python, and the old-age Assembly Language. Upon graduaton, he hopes to become a Software Engineer specializing in Security.
+              He is expected to graduate in May 2020.</p>
+            </div>
+          </div>
+        </div>
+        <div class="column">
+          <div class="card">
+            <img src="bg/torendra.jpg" alt="torendra">
+            <div class="about_container">
+              <h1>Torendra Rasik</h1>
+              <h2 class="title">Developer</h2>
+              <p>Torendra Rasik is currently pursuing a Bachelor's of Science in Computer Science at CUNY Queens College. He got his introduction to programming during his high school years, primarily in Java.
+              Becoming a programmer at an earlier age than most, he was able to obtain a vast amount of knowledge about the Java API. Since then, he has gained working knowledge of Java and C++, both being Object-Oriented Languages.
+              He has gained working knowldge of HTML5, CSS3, and JavasScript, along with Assembly Language. Upon graduation, he hopes to become a Software Developer that can impact users around the world. He is expected to graduate in December 2020.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h1 id="contact_info">Contact Us</h1>
+      <form class="contact-form" action="contact.php" method="POST" autocomplete="off">
+        <input type="text" class="form-control" name="name" placeholder="Name" required>
+        <input type="email" class="form-control" name="mail" placeholder="Email" required>
+        <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+        <textarea class="form-control" rows="6" name="message" placeholder="Message" required></textarea>
+        <input type="submit" id="csubmit" name="submit" value="Send Mail">
+      </form>
     </div>
   </body>
 </html>

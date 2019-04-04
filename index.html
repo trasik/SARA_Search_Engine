@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <title>SARA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
   <div class="navbar" id="myNav">
@@ -38,25 +39,22 @@
     <div class="dropdown">
       <button class="dropbtn">About <i class="fa fa-caret-down"></i></button>
       <div class="dropdown-content">
-        <a href="about.html">About Us</a>
-        <a href="about.html">Contact Us</a>
+        <a href="about.html#about_info">About Us</a>
+        <a href="about.html#contact_info">Contact Us</a>
       </div>
     </div>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
-
-  <script src="scripts/script.js"></script>
-
   <div class="container-search">
     <section class="search">
-      <form action ="results3.html" method="GET" autocomplete="off">
-        <input type="text" class="input" name="q" placeholder="Type to Search...">
-        <button type="submit" class="btn-submit">
+      <form action ="results3.html" method="post" autocomplete="off">
+        <input autocomplete="off" type="text" id="src-text" class="input" name="q" placeholder="Type to Search...">
+        <button type="submit" id="submit" class="btn-submit">
           <i class="fa fa-search"></i>
         </button>
       </form>
     </section>
   </div>
-
+  <script src="scripts/script.js"></script>
   </body>
 </html>

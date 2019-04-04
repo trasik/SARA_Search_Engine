@@ -117,6 +117,74 @@ body{
   }
 }
 
+.alert-box {
+  display:block;
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.alert-header {
+  padding: 2px 16px;
+  background-color: #3498DB;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: white;
+}
+
+.alert-body {
+  padding: 2px 16px;
+}
+
+.alert-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border-radius: 5px;
+  width: 50%;
+  font-size: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+@-webkit-keyframes animatetop {
+  from {top:-50%; opacity:0}
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-50%; opacity:0}
+  to {top:0; opacity:1}
+}
+
+.alert-close {
+  color: white;
+  position: relative;
+  margin-top: -3px;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+  transition: color .2s;
+}
+
+.alert-close:hover,
+.alert-close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .container-search {
   width: 40%;
   position: absolute;
@@ -161,6 +229,7 @@ body{
   transition: background-color .2s ease;
   -webkit-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
+  cursor:pointer;
 }
 
 .search .btn-submit:hover {
@@ -185,6 +254,7 @@ body{
 
 .container-srcres h1 {
   padding-top: 10px;
+  text-shadow: 3px 3px #000000;
   text-align: center;
   color:white;
 }
@@ -214,39 +284,6 @@ body{
   text-decoration: none;
 }
 
-#download_buttons {
-  position: relative;
-  z-index:-1;
-}
-
-.btn-down, .btn-up {
-  display:inline-block;
-  background-color:#3498DB;
-  padding:10px 20px;
-  border:1.6px solid #FFFFFF;
-  margin:3px 5px 5px 3px;
-  border-radius:2px;
-  box-sizing: border-box;
-  text-decoration:none;
-  font-size:20px;
-  color:#FFFFFF;
-  text-align:center;
-  transition: all 0.2s;
-  min-width:32.5%;
-}
-
-.btn-down:hover, .btn-up:hover {
-  color:#3498DB;
-  background-color:#FFFFFF;
-}
-
-@media screen and (max-width: 1461px) {
-  .btn-up, .btn-down {
-    display:block;
-    width: 100%;
-  }
-}
-
 .page_check {
   position: absolute;
   margin-top: 8px;
@@ -254,17 +291,87 @@ body{
   z-index: 1;
 }
 
-.cse .gsc-control-cse, .gsc-control-cse {
-  background-color:transparent !important;
+#up-down-btns {
+  position:relative;
+  width: 100%;
+  text-align: center;
+  z-index:-1;
 }
 
-.gsc-results .gsc-webResult {
-  background-color:transparent !important;
+input[type="file"] {
+    display: none;
 }
 
-.gsc-cursor-page{
-  background-color:transparent !important;
+#upload, #download, #options {
+  cursor: pointer;
+  background-color:#3498DB;
+  padding:10px 20px;
+  margin-bottom: 5px;
+  border:1.6px solid #FFFFFF;
+  border-radius:2px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-size:20px;
+  color:#FFFFFF;
+  transition: all 0.2s;
 }
+
+.select-btn {
+  cursor: pointer;
+  background-color:#3498DB;
+  padding:5px 10px;
+  border:1.6px solid #FFFFFF;
+  margin:3px 5px 5px 3px;
+  border-radius:2px;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-size:14px;
+  color:#FFFFFF;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+#upload:hover, #download:hover, #options:hover, .select-btn:hover {
+  color:#3498DB;
+  background-color:#FFFFFF;
+}
+
+@media screen and (max-width: 504px) {
+  #upload, #download, #options {
+    padding:5px 10px;
+    border:.8px solid #FFFFFF;
+    margin-bottom: 5px;
+    border-radius:1px;
+    font-size:12px;
+  }
+
+  .select-btn {
+    padding:5px 10px;
+    border:1.6px solid #FFFFFF;
+    margin:3px 5px 5px 3px;
+    border-radius:2px;
+    font-size:12px;
+  }
+}
+
+#pagelist a {
+  color: white;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .2s;
+}
+
+#pagelist a.page_active {
+  background-color: #3498DB;
+  color: white;
+}
+
+#pagelist a:hover:not(.page_active) {
+  background-color: white;
+  color:#3498DB;
+}
+
 @keyframes fade {
   from {
     opacity: 0;

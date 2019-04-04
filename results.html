@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>SARA-Search Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style_res.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
     <div class="navbar" id="myNav">
@@ -46,14 +47,12 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <a href="about.html">About Us</a>
-          <a href="about.html">Contact Us</a>
+          <a href="about.html#about_info">About Us</a>
+          <a href="about.html#contact_info">Contact Us</a>
         </div>
       </div>
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
-
-    <script src="scripts/script.js"></script>
 
     <div class="container-search">
       <section class="search">
@@ -68,69 +67,113 @@
 
     <div class="container-srcres">
       <h1>Search Results</h1>
+      <div id="up-down-btns">
+        <button type="button" name="f-download" id="download" onclick="fileDownload()"><i class="fas fa-file-download"></i>  Download to</button>
+        <select name="options" id="options">
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+          <option value="xml">XML</option>
+        </select>
+      </div>
+      <div id="selections">
+        <button type="button" id="select-1" class="select-btn">Select All</button>
+        <button type="button" id="select-2" class="select-btn">Deselect All</button>
+      </div>
       <section class="src-res">
         <br>
-        <ul>
-          <li><h2>Pizza Hut® $5 Lineup is Here | A Lineup of All Your Favorites</h2></li>
-          <li><a href="https://www.pizzahut.com">https://www.pizzahut.com</a></li>
-          <li>Order pizza online for fast delivery or carryout from a store near you. View our full menu, see nutritional information, find store locations, and more.</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_0">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Pizza Hut® $5 Lineup is Here | A Lineup of All Your Favorites</h2></li>
+            <li><a href="https://www.pizzahut.com">https://www.pizzahut.com</a></li>
+            <li>Order pizza online for fast delivery or carryout from a store near you. View our full menu, see nutritional information, find store locations, and more.</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Domino's: Pizza Delivery & Carryout, Pasta, Chicken & More</h2></li>
-          <li><a href="https://www.dominos.com/en/">https://www.dominos.com/en/</a></li>
-          <li>Order pizza, pasta, chicken & more online for carryout or delivery from your local Domino's restaurant. View our menu, find locations and track orders.</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_1">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Domino's: Pizza Delivery & Carryout, Pasta, Chicken & More</h2></li>
+            <li><a href="https://www.dominos.com/en/">https://www.dominos.com/en/</a></li>
+            <li>Order pizza, pasta, chicken & more online for carryout or delivery from your local Domino's restaurant. View our menu, find locations and track orders.</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Best Pizza In Queens - NYC - Thrillist</h2></li>
-          <li><a href="https://www.thrillist.com/eat/new-york/queens/best-pizza-in-queens-nyc">https://www.thrillist.com/eat/new-york/queens/best-pizza-in-queens-nyc</a></li>
-          <li>As far as I'm concerned, anything West of Flushing is Brooklyn. Deep Queens is known for its decades-old pizza joints, and while there are tons...</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_2">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Best Pizza In Queens - NYC - Thrillist</h2></li>
+            <li><a href="https://www.thrillist.com/eat/new-york/queens/best-pizza-in-queens-nyc">https://www.thrillist.com/eat/new-york/queens/best-pizza-in-queens-nyc</a></li>
+            <li>As far as I'm concerned, anything West of Flushing is Brooklyn. Deep Queens is known for its decades-old pizza joints, and while there are tons...</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Pizza Places in Queens</h2></li>
-          <li><a href="https://www.tripadvisor.com/Restaurants-g616325-c31-Queens_New_York.html">https://www.tripadvisor.com/Restaurants-g616325-c31-Queens_New_York.html</a></li>
-          <li>Best Pizza in Queens, New York: Find TripAdvisor traveler reviews of Queens Pizza places and search by price, location, and more.</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_3">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Pizza Places in Queens</h2></li>
+            <li><a href="https://www.tripadvisor.com/Restaurants-g616325-c31-Queens_New_York.html">https://www.tripadvisor.com/Restaurants-g616325-c31-Queens_New_York.html</a></li>
+            <li>Best Pizza in Queens, New York: Find TripAdvisor traveler reviews of Queens Pizza places and search by price, location, and more.</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Lombardi's: America's First Pizzeria | Little Italy New York</h2></li>
-          <li><a href="https://firstpizza.com/">https://firstpizza.com/</a></li>
-          <li>Lombardi's was founded in 1905, making it the first pizzeria in the United States. Still located in the Little Italy section of Manhattan offering its ...</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_4">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Lombardi's: America's First Pizzeria | Little Italy New York</h2></li>
+            <li><a href="https://firstpizza.com/">https://firstpizza.com/</a></li>
+            <li>Lombardi's was founded in 1905, making it the first pizzeria in the United States. Still located in the Little Italy section of Manhattan offering its ...</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Pizza Moto - Brooklyn</h2></li>
-          <li><a href="https://www.pizzamoto.com/">https://www.pizzamoto.com/</a></li>
-          <li>Pizza Moto is a brick-&-mortar offshoot of mobile eatery, serving Neapolitan-style pies, small plates & cocktails.</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_5">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Pizza Moto - Brooklyn</h2></li>
+            <li><a href="https://www.pizzamoto.com/">https://www.pizzamoto.com/</a></li>
+            <li>Pizza Moto is a brick-&-mortar offshoot of mobile eatery, serving Neapolitan-style pies, small plates & cocktails.</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Pizza Memes. Best Collection of Funny Pizza Pictures</h2></li>
-          <li><a href="https://www.memecenter.com/search/pizza">https://www.memecenter.com/search/pizza</a></li>
-          <li>Pizza Memes. Updated daily, for more funny memes check our homepage.</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_6">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Pizza Memes. Best Collection of Funny Pizza Pictures</h2></li>
+            <li><a href="https://www.memecenter.com/search/pizza">https://www.memecenter.com/search/pizza</a></li>
+            <li>Pizza Memes. Updated daily, for more funny memes check our homepage.</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Papa John's Pizza | Order for Delivery or Carryout</h2></li>
-          <li><a href="https://www.papajohns.com/">https://www.papajohns.com/</a></li>
-          <li>Each Papa John's pizza is carefully crafted with flavorful, superior-quality ingredients and toppings. Order pizza online for delivery or carryout.</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_7">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Papa John's Pizza | Order for Delivery or Carryout</h2></li>
+            <li><a href="https://www.papajohns.com/">https://www.papajohns.com/</a></li>
+            <li>Each Papa John's pizza is carefully crafted with flavorful, superior-quality ingredients and toppings. Order pizza online for delivery or carryout.</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Home - Grimaldi's Coal Brick-Oven Pizzeria with locations in Arizona ...</h2></li>
-          <li><a href="https://www.grimaldispizzeria.com/">https://www.grimaldispizzeria.com/</a></li>
-          <li>Our fresh ingredients, handmade mozzarella, 'secret recipe' dough and pizza sauce make us the most award-winning pizzeria in the United States. Our pizzas ...</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_8">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Home - Grimaldi's Coal Brick-Oven Pizzeria with locations in Arizona ...</h2></li>
+            <li><a href="https://www.grimaldispizzeria.com/">https://www.grimaldispizzeria.com/</a></li>
+            <li>Our fresh ingredients, handmade mozzarella, 'secret recipe' dough and pizza sauce make us the most award-winning pizzeria in the United States. Our pizzas ...</li>
+          </ul>
+        </div>
         <br>
-        <ul>
-          <li><h2>Home of the Super Slice - Pizza Barn, Yonkers</h2></li>
-          <li><a href="https://www.pizzabarnyonkers.com/">https://www.pizzabarnyonkers.com/</a></li>
-          <li>Pizza, 2ft Pizza, Super Slice, Biggest Pizza Slice in the world!</li>
-        </ul>
+        <input type="checkbox" class="page_check" id="check_9">
+        <div class='page_item'>
+          <ul>
+            <li><h2>Home of the Super Slice - Pizza Barn, Yonkers</h2></li>
+            <li><a href="https://www.pizzabarnyonkers.com/">https://www.pizzabarnyonkers.com/</a></li>
+            <li>Pizza, 2ft Pizza, Super Slice, Biggest Pizza Slice in the world!</li>
+          </ul>
+        </div>
         <br>
       </section>
     </div>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/FileSaver.js"></script>
   </body>
 </html>

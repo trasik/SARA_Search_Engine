@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <title>SARA-Search Results</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style_res.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
     <div class="navbar" id="myNav">
@@ -46,38 +47,35 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <a href="about.html">About Us</a>
-          <a href="about.html">Contact Us</a>
+          <a href="about.html#about_info">About Us</a>
+          <a href="about.html#contact_info">Contact Us</a>
         </div>
       </div>
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 
-    <script src="scripts/script.js"></script>
-
     <div class="container-search">
       <section class="search">
-        <form action ="" method="GET" autocomplete="off">
-          <input type="text" class="input" name="q" placeholder="Type to Search...">
-          <button type="submit" class="btn-submit">
+          <input autocomplete="off" type="text" id="src-text" class="input" name="q" placeholder="Type to Search...">
+          <button type="submit" id="submit" class="btn-submit" onclick="showPage(1)">
             <i class="fa fa-search"></i>
           </button>
-        </form>
       </section>
     </div>
-    <script>
-    (function() {
-      var cx = '017797819528819750857:jmzwxfbfxqe';
-      var gcse = document.createElement('script');
-      gcse.type = 'text/javascript';
-      gcse.async = true;
-      gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(gcse, s);
-    })();
-    </script>
     <div class="container-srcres">
-      <gcse:searchresults-only></gcse:searchresults-only>
+      <h1>Search Results</h1>
+      <div id="up-down-btns">
+        <button type="button" name="f-download" id="download" onclick="fileDownload()"><i class="fas fa-file-download"></i>  Download to</button>
+        <select name="options" id="options">
+          <option value="json">JSON</option>
+          <option value="csv">CSV</option>
+          <option value="xml">XML</option>
+        </select>
+      </div>
+      <section class="src-res" id="results_info">
+      </section>
     </div>
+    <script src="scripts/script.js"></script>
+    <script src="scripts/FileSaver.js"></script>
   </body>
 </html>
