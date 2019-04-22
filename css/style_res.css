@@ -13,6 +13,22 @@ body{
   font-family: Arial, Helvetica, sans-serif;
 }
 
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: black;
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #3498DB;
+}
+
 .navbar {
   overflow: hidden;
   background-color:rgba(0, 0, 0, 0.9);
@@ -245,6 +261,7 @@ body{
   left: 5%;
   overflow:hidden;
   z-index:-1;
+  margin-bottom: 25px;
 }
 
 .src-res {
@@ -256,6 +273,12 @@ body{
   padding-top: 10px;
   text-shadow: 3px 3px #000000;
   text-align: center;
+  color:white;
+}
+
+#results_num {
+  padding-top: 10px;
+  padding-left: 20px;
   color:white;
 }
 
@@ -331,13 +354,13 @@ input[type="file"] {
   transition: all 0.2s;
 }
 
-#upload:hover, #download:hover, #options:hover, .select-btn:hover {
+#upload:hover, #download:hover, #options:hover, .select-btn:hover, #admin:hover {
   color:#3498DB;
   background-color:#FFFFFF;
 }
 
 @media screen and (max-width: 504px) {
-  #upload, #download, #options {
+  #upload, #download, #options, #admin {
     padding:5px 10px;
     border:.8px solid #FFFFFF;
     margin-bottom: 5px;

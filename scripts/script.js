@@ -174,10 +174,10 @@ function handleFileSelect() {
         reader.onload = (function(theFile) {
           return function(e) {
             var data = JSON.parse(e.target.result);
-            var pages = data.pages;
+            var pages = data.Result;
             var items = "";
             for(var i = 0; i < pages.length; i++) {
-              items += addResult(i, items, pages[i].title, pages[i].url, pages[i].desc);
+              items += addResult(i, items, pages[i].title, pages[i].url, pages[i].description);
             }
             items += "<br>";
             document.getElementById("results_info").innerHTML = items;
@@ -208,12 +208,12 @@ function handleFileSelect() {
           return function(e) {
             var parser = new DOMParser();
             var parsedData = parser.parseFromString(e.target.result, "application/xml");
-            var data = parsedData.getElementsByTagName("page");
+            var data = parsedData.getElementsByTagName("result");
             var items = "";
             for(var i = 0; i < data.length; i++) {
               var title = data[i].getElementsByTagName("title")[0].innerHTML;
               var url = data[i].getElementsByTagName("url")[0].innerHTML;
-              var desc = data[i].getElementsByTagName("desc")[0].innerHTML;
+              var desc = data[i].getElementsByTagName("description")[0].innerHTML;
               items += addResult(i, items, title, url, desc);
             }
             items += "<br>";
@@ -230,7 +230,7 @@ function fileDownload() {
   if (x == "json") {
     fdownload("json");
   } else if (x == "csv") {
-    fdownload("txt");
+    fdownload("csv");
   } else if (x == "xml") {
     fdownload("xml");
   }
@@ -249,18 +249,18 @@ function fdownload(type) {
     return;
   }
   if (type == "json") {
-    var data = {"pages": []};
+    var data = {"Result": []};
     for(var j = 0; j <selected.length; j++) {
       var x = document.getElementById(selected[j]);
       var title = x.nextSibling.nextElementSibling.childNodes[1].children[0].innerText;
       var url = x.nextSibling.nextElementSibling.childNodes[1].children[1].innerText;
       var desc = x.nextSibling.nextElementSibling.childNodes[1].children[2].innerText;
-      data.pages.push({"title": title, "url": url, "desc": desc});
+      data.Result.push({"title": title, "url": url, "description": desc});
     }
     data = JSON.stringify(data);
     var blob = new Blob([data], {type: "application/json;charset=utf-8"});
     saveAs(blob, "data.json");
-  } else if (type == "txt") {
+  } else if (type == "csv") {
     var data = "";
     for(var j = 0; j <selected.length; j++) {
       var x = document.getElementById(selected[j]);
@@ -272,15 +272,15 @@ function fdownload(type) {
     var blob = new Blob([data], {type: "text/csv;charset=utf-8"});
     saveAs(blob, "data.csv");
   } else if (type == "xml") {
-    var data = "<?xml version='1.0' encoding='UTF-8'?><root>";
+    var data = "<?xml version='1.0' encoding='UTF-8'?>\n<results>\n";
     for(var j = 0; j <selected.length; j++) {
       var x = document.getElementById(selected[j]);
       var title = x.nextSibling.nextElementSibling.childNodes[1].children[0].innerText;
       var url = x.nextSibling.nextElementSibling.childNodes[1].children[1].innerText;
       var desc = x.nextSibling.nextElementSibling.childNodes[1].children[2].innerText;
-      data += "<page>\n<desc>" + desc + "</desc>\n<title>" + title + "</title>\n<url>" + url + "</url>\n</page>\n"
+      data += "<result>\n<title>" + title + "</title>\n<url>" + url + "</url>\n<description>" + desc + "</description>\n</result>\n"
     }
-    data += "</root>";
+    data += "</results>";
     var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
     saveAs(blob, "data.xml");
   }

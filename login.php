@@ -2,10 +2,11 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>SARA-Search Results</title>
+    <title>SARA-Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/style_res.css">
+    <link rel="stylesheet" href="css/adminpanel.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   </head>
   <body>
@@ -51,32 +52,35 @@
           <a href="about.html#contact_info">Contact Us</a>
         </div>
       </div>
-      <a href="login.php">Admin</a>
+      <a href="#">Admin</a>
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
+    <div class="container-login">
+      <section class="login-info">
+        <h2>Login</h2>
+        <form class="login-form" action="" method="POST" autocomplete="off">
+          <input type="text" class="login-control" name="user" placeholder="Username" required>
+          <input type="password" class="login-control" name="pass" placeholder="Password" required>
+          <input type="submit" id="lsubmit" name="lsubmit" value="Login">
+        </form>
+      </section>
+    </div>
+    <?php
+      if (isset($_POST['lsubmit'])) {
+        $user = $_POST['user'];
+        $pass = $_POST['pass'];
 
-    <div class="container-search">
-      <section class="search">
-          <input autocomplete="off" type="text" id="src-text" class="input" name="q" placeholder="Type to Search...">
-          <button type="submit" id="submit" class="btn-submit" onclick="showPage(1)">
-            <i class="fa fa-search"></i>
-          </button>
-      </section>
-    </div>
-    <div class="container-srcres">
-      <h1>Search Results</h1>
-      <div id="up-down-btns">
-        <button type="button" name="f-download" id="download" onclick="fileDownload()"><i class="fas fa-file-download"></i>  Download to</button>
-        <select name="options" id="options">
-          <option value="json">JSON</option>
-          <option value="csv">CSV</option>
-          <option value="xml">XML</option>
-        </select>
-      </div>
-      <section class="src-res" id="results_info">
-      </section>
-    </div>
-    <script src="scripts/script.js"></script>
-    <script src="scripts/FileSaver.js"></script>
+        if (($user == 'trasik' && $pass == 'cs355') || ($user == 'ksingh' && $pass == 'cs355')
+            || ($user == 'lteitelman' && $pass == 'cs355')) {
+          session_start();
+          $_SESSION['user'] = $user;
+          header("Location: server/admin/dashboard.php");
+          exit();
+        } else {
+          header("Location: login.php?error=wronguser&pass");
+          exit();
+        }
+      }
+    ?>
   </body>
 </html>
