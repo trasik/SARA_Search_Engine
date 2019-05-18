@@ -278,6 +278,10 @@ li a:hover:not(.active) {
   word-wrap: break-word;
 }
 
+.indexerTable {
+  margin-top: 30%;
+}
+
 .error_prompt {
   width: 80%;
   height: 80%;

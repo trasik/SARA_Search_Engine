@@ -147,6 +147,10 @@
             $result = mysqli_query($conn, $sql);
             if ($result->num_rows > 0) {
               $c = 0;
+              echo "<div id='selections'>
+                <button type='button' id='select-1' class='select-btn'>Select All</button>
+                <button type='button' id='select-2' class='select-btn'>Deselect All</button>
+              </div><br>";
               echo "<p id='resultCount'>Page $page of $total results</p>";
               while($row = $result->fetch_assoc()) {
                 $c++;
@@ -154,7 +158,7 @@
                 echo "<li><a href='" . $row["url"] . "'>" . $row["url"] . "</a></li>\n";
                 echo "<li>" . $row["description"] . "</li>\n</ul>\n</div>";
               }
-              echo "<footer id='pagelist'>";
+              echo "<br><footer id='pagelist'>";
               for($i = 1; $i <= $totalPages; $i++) {
                 if($i == $page) {
                   echo "<a class='page_active'>" . $i ."</a>";
@@ -164,7 +168,7 @@
               }
               echo "</footer";
             } else {
-              echo "0 results";
+              echo "<p id='resultCount'>0 Results</p>";
             }
             $finish = microtime(true) - $start;
             $sql = "INSERT INTO `search` (terms, count, `option`, pageNum, timeToSearch) VALUES ('$query', $total,'$checkOpt', $page, $finish)";

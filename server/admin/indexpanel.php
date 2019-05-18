@@ -43,6 +43,39 @@
           <?php include '../indexer.php' ?>
         </div>
       </section>
+      <div class="indexerTable">
+        <h2>Indexer History</h2>
+        <?php
+        require '../connection.php';
+
+        $sql = "SELECT * FROM indexer ORDER BY dateAdded DESC";
+        $result = mysqli_query($conn, $sql);
+
+        echo "<table border='1'>
+        <tr>
+        <th>Indexer ID</th>
+        <th>Base URL</th>
+        <th>Option</th>
+        <th>Total Words Inserted</th>
+        <th>Total URL's Inserted</th>
+        <th>Total Time (Seconds)</th>
+        <th>Indexed Date</th>
+        </tr>";
+
+        while($row = $result->fetch_assoc()) {
+          echo "<tr>";
+          echo "<td>" . $row['indexerId'] . "</td>";
+          echo "<td>" . $row['baseUrl'] . "</td>";
+          echo "<td>" . $row['option'] . "</td>";
+          echo "<td>" . $row['totalCount'] . "</td>";
+          echo "<td>" . $row['totalLinks'] . "</td>";
+          echo "<td>" . $row['totalTime'] . "</td>";
+          echo "<td>" . $row['dateAdded'] . "</td>";
+          echo "</tr>";
+        }
+        echo "</table>";
+        ?>
+      </div>
     </div>
   </body>
 </html>

@@ -1,6 +1,10 @@
 <?php
 require 'connection.php';
 
+$already_crawled = array();
+$totalCount = 0;
+$totalURL = 0;
+
 if (isset($_POST['psubmit'])) {
   set_time_limit(0);
   $root = $_POST['name'];
@@ -9,6 +13,7 @@ if (isset($_POST['psubmit'])) {
     $parseOpt = $_POST["parseOpt"];
     if($parseOpt == 'single') {
       $start = microtime(true);
+      $totalURL = 1;
       $root = sanitizeUrl($root, $root);
       if (substr($root, -1) != "/") $root = $root."/";
       $info = getInfo($root);
@@ -53,6 +58,7 @@ if (isset($_POST['psubmit'])) {
           }
         }
         output("Total Words Inserted: $count<br>");
+        $totalCount = $count;
 
         $sql = "SELECT pageid FROM `page` WHERE `url` = '{$u}'";
         $results = $conn->query($sql);
@@ -86,6 +92,8 @@ if (isset($_POST['psubmit'])) {
         $finish = microtime(true) - $start;
         $sql = "UPDATE `page` SET timeToIndex=$finish WHERE pageid=$pageID";
         mysqli_query($conn, $sql);
+        $sql = "INSERT INTO `indexer` (`baseUrl`, `option`, `totalCount`, `totalLinks`, `totalTime`) VALUES ('$u', '$parseOpt' , $totalCount, $totalURL, $finish)";
+        mysqli_query($conn, $sql);
       }
     } else if($parseOpt == 'multiple') {
       $depth = $_POST["depth"];
@@ -100,6 +108,8 @@ if (isset($_POST['psubmit'])) {
       $start = microtime(true);
       crawl($root, $depth);
       $finish = microtime(true) - $start;
+      $sql = "INSERT INTO `indexer` (baseUrl, `option`, totalCount, totalLinks, totalTime) VALUES ('$root', '$parseOpt', $totalCount, $totalURL, $finish)";
+      mysqli_query($conn, $sql);
       output("Finished Indexing Pages in $finish seconds.<br>");
     }
   } else {
@@ -107,12 +117,12 @@ if (isset($_POST['psubmit'])) {
   }
 }
 
-$already_crawled = array();
-
 function crawl($url, $depth) {
   if ($depth <= 0) return;
 
 	global $already_crawled;
+  global $totalCount;
+  global $totalURL;
   global $conn;
 
 	$dom = getReq($url);
@@ -156,6 +166,7 @@ function crawl($url, $depth) {
         output("Inserted URL: $u<br>");
         $sql->execute();
 
+        $totalURL++;
         $text = getWords($a);
         $words = explode(" ", $text);
         $count = 0;
@@ -173,6 +184,7 @@ function crawl($url, $depth) {
           }
         }
         output("Total Words Inserted: $count<br>");
+        $totalCount += $count;
 
         $sql = "SELECT pageid FROM `page` WHERE `url` = '{$u}'";
         $results = $conn->query($sql);
