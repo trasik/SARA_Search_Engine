@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -14,15 +11,11 @@ session_start();
   <body>
     <ul>
       <li><h2>Administration Panel</h2></li>
-      <?php
-        if (isset($_SESSION['user'])) {
-          echo '<li><p>'.$_SESSION['user'].' is logged in</p></li>';
-        }
-      ?>
+      <li><a href="../../index.html">Home</a></li>
       <li><a href="#">Dashboard</a></li>
       <li><a href="indexpanel.php">Indexer Panel</a></li>
       <li><a href="errorpanel.php">Error Panel</a></li>
-      <li><a href="logout.php">Logout</a></li>
+      <li><a href="searchpanel.php">Search Panel</a></li>
     </ul>
 
     <div class="container">

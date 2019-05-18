@@ -51,17 +51,33 @@
           <a href="about.html#contact_info">Contact Us</a>
         </div>
       </div>
-      <a href="login.php">Admin</a>
+      <a href="server/admin/dashboard.php">Admin</a>
       <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
     </div>
 
     <div class="container-search">
       <section class="search">
         <form action ="" method="GET" autocomplete="off">
-          <input autocomplete="off" type="text" id="src-text" class="input" name="query" placeholder="Type to Search...">
+          <input autocomplete="off" type="text" id="src-text" name="query" placeholder="Type to Search...">
           <button type="submit" id="submit" class="btn-submit">
             <i class="fa fa-search"></i>
-          </button>
+          </button><br>
+          <label class="checkContainer">Default
+            <input type="radio" name="checkOpt" value="default" checked="checked" <?php if (isset($_GET['checkOpt']) && $_GET['checkOpt'] == 'default')  echo ' checked="checked"';?>>
+            <span class="checkmark"></span>
+          </label>
+          <label class="checkContainer">Check-Insensitive
+            <input type="radio" name="checkOpt" value="case" <?php if (isset($_GET['checkOpt']) && $_GET['checkOpt'] == 'case')  echo ' checked="checked"';?>>
+            <span class="checkmark"></span>
+          </label>
+          <label class="checkContainer">Partial Word
+            <input type="radio" name="checkOpt" value="partial" <?php if (isset($_GET['checkOpt']) && $_GET['checkOpt'] == 'partial')  echo ' checked="checked"';?>>
+            <span class="checkmark"></span>
+          </label>
+          <label class="checkContainer">Both
+            <input type="radio" name="checkOpt" value="both" <?php if (isset($_GET['checkOpt']) && $_GET['checkOpt'] == 'both')  echo ' checked="checked"';?>>
+            <span class="checkmark"></span>
+          </label>
         </form>
       </section>
     </div>
@@ -77,75 +93,82 @@
       </div>
       <section class="src-res" id="results_info">
         <?php
+          require 'server/connection.php';
+
           if(isset($_GET['query'])) {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "saraEngine";
-
-            $conn = new mysqli($servername, $username, $password, $dbname);
-            $conn->set_charset("utf8");
-
-            if ($conn->connect_error) {
-              echo "ERROR: PLEASE CHECK ERROR PANEL";
-              file_put_contents("admin/error.txt","Connection failed: " . $conn->connect_error);
-              exit();
-            }
-
-            $sql = "CREATE TABLE IF NOT EXISTS wordtable (
-            wordid INT(7) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            word VARCHAR(100) NOT NULL,
-            dateadded TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-            )";
-
-            if ($conn->query($sql) === FALSE) {
-              echo "ERROR: PLEASE CHECK ERROR PANEL";
-              file_put_contents("admin/error.txt","Error creating table: " . $conn->error);
-            }
-
             $query = $_GET['query'];
-
-            $q = "SELECT * FROM `wordtable` WHERE `word` = '{$query}'";
-            $result = mysqli_query($conn, $q);
             $sql;
-            if (mysqli_num_rows($result) > 0) {
-              $stmt = "UPDATE `wordtable` SET word=? WHERE word=?";
-              $sql = $conn->prepare($stmt);
-              $sql->bind_param("ss", $query, $query);
-              $sql->execute();
-            } else {
-              $sql = $conn->prepare("INSERT INTO `wordtable`(`word`) VALUES (?)");
-              $sql->bind_param("s", $query);
-              $sql->execute();
-            }
-
-            $terms = explode(" ", $query);
-            $counter = 0;
-            $qterm = "";
-            foreach($terms as $term) {
-              $counter++;
-              if ($counter == 1) {
-                $qterm .= "title LIKE '%$term%' OR description LIKE '%$term%'";
-              } else {
-                $qterm .= " AND title LIKE '%$term%' OR description LIKE '%$term%'";
+            $checkOpt;
+            if(isset($_GET['checkOpt'])) {
+              $checkOpt = $_GET['checkOpt'];
+              if ($_GET['checkOpt'] == 'default') {
+                $sql = "SELECT * FROM `page`, `word`, `page_word`
+                          WHERE page.pageid = page_word.pageid
+                          AND word.wordid = page_word.wordid
+                          AND word.wordName = '$query'
+                          ORDER BY page_word.freq_wordcount DESC
+                          ";
+              } else if($_GET['checkOpt'] == 'case') {
+                $sql = "SELECT * FROM `page`, `word`, `page_word`
+                          WHERE page.pageid = page_word.pageid
+                          AND word.wordid = page_word.wordid
+                          AND LOWER(word.wordName) = LOWER('$query')
+                          ORDER BY page_word.freq_wordcount DESC
+                          ";
+              } else if($_GET['checkOpt'] == 'partial') {
+                $sql = "SELECT * FROM `page`, `word`, `page_word`
+                          WHERE page.pageid = page_word.pageid
+                          AND word.wordid = page_word.wordid
+                          AND word.wordName LIKE '%$query%'
+                          ORDER BY page_word.freq_wordcount DESC
+                          ";
+              } else if ($_GET['checkOpt'] == 'both') {
+                $sql = "SELECT * FROM `page`, `word`, `page_word`
+                          WHERE page.pageid = page_word.pageid
+                          AND word.wordid = page_word.wordid
+                          AND LOWER(word.wordName) LIKE LOWER('%$query%')
+                          ORDER BY page_word.freq_wordcount DESC
+                          ";
               }
             }
-
-            $sql = "SELECT * FROM pagetable WHERE $qterm";
-            $results = $conn->query($sql);
-            if ($results->num_rows == 0) {
-              echo "<p id='results_num'>0 results found</p>";
+            $start = microtime(true);
+            $result = mysqli_query($conn, $sql);
+            $total = $result->num_rows;
+            $perPage = 10;
+            $totalPages = ceil($total/$perPage);
+            $page;
+            if(isset($_GET['page'])) {
+              $page = $_GET['page'];
             } else {
-              echo "<p id='results_num'>" . $results->num_rows ." results found</p>";
+              $page = 1;
             }
-            $check = 0;
-            foreach($results->fetch_all(MYSQLI_ASSOC) as $result) {
-              $check++;
-              echo "<br><input type='checkbox' class='page_check' id='check_" . $check . "'>";
-              echo "<div class='page_item'><ul><li><h2>" . $result['title'] . "</h2></li>";
-              echo "<li><a href='" . $result['url'] . "'>" . $result['url'] . "</a></li>";
-              echo "<li>" . $result['description'] . "</li></ul></div>";
+            $offset = ($page - 1) * $perPage;
+            $sql = $sql. "LIMIT $perPage OFFSET $offset";
+            $result = mysqli_query($conn, $sql);
+            if ($result->num_rows > 0) {
+              $c = 0;
+              echo "<p id='resultCount'>Page $page of $total results</p>";
+              while($row = $result->fetch_assoc()) {
+                $c++;
+                echo "<br>\n<input type='checkbox' class='page_check' id='check_" . $c . "'>\n<div class='page_item'>\n<ul>\n<li><h2>" . $row["title"] . "</h2></li>\n";
+                echo "<li><a href='" . $row["url"] . "'>" . $row["url"] . "</a></li>\n";
+                echo "<li>" . $row["description"] . "</li>\n</ul>\n</div>";
+              }
+              echo "<footer id='pagelist'>";
+              for($i = 1; $i <= $totalPages; $i++) {
+                if($i == $page) {
+                  echo "<a class='page_active'>" . $i ."</a>";
+                } else {
+                  echo "<a href='results4.php?query=$query&checkOpt=$checkOpt&page=$i'.'>$i</a>'";
+                }
+              }
+              echo "</footer";
+            } else {
+              echo "0 results";
             }
+            $finish = microtime(true) - $start;
+            $sql = "INSERT INTO `search` (terms, count, `option`, pageNum, timeToSearch) VALUES ('$query', $total,'$checkOpt', $page, $finish)";
+            mysqli_query($conn, $sql);
           }
         ?>
       </section>

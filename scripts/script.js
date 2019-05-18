@@ -211,9 +211,9 @@ function handleFileSelect() {
             var data = parsedData.getElementsByTagName("result");
             var items = "";
             for(var i = 0; i < data.length; i++) {
-              var title = data[i].getElementsByTagName("title")[0].innerHTML;
-              var url = data[i].getElementsByTagName("url")[0].innerHTML;
-              var desc = data[i].getElementsByTagName("description")[0].innerHTML;
+              var title = data[i].getElementsByTagName("title")[0].childNodes[0].nodeValue;
+              var url = data[i].getElementsByTagName("url")[0].childNodes[0].nodeValue;
+              var desc = data[i].getElementsByTagName("description")[0].childNodes[0].nodeValue;
               items += addResult(i, items, title, url, desc);
             }
             items += "<br>";
@@ -248,6 +248,7 @@ function fdownload(type) {
     createAlert("Error", "Please upload a data source in order to check items for download.");
     return;
   }
+  var dataName = prompt("Please enter a file name to save");
   if (type == "json") {
     var data = {"Result": []};
     for(var j = 0; j <selected.length; j++) {
@@ -259,7 +260,7 @@ function fdownload(type) {
     }
     data = JSON.stringify(data);
     var blob = new Blob([data], {type: "application/json;charset=utf-8"});
-    saveAs(blob, "data.json");
+    saveAs(blob, dataName + ".json");
   } else if (type == "csv") {
     var data = "";
     for(var j = 0; j <selected.length; j++) {
@@ -270,19 +271,20 @@ function fdownload(type) {
       data += '"' + title + '","'+ url + '","' + desc + '"' + '\n';
     }
     var blob = new Blob([data], {type: "text/csv;charset=utf-8"});
-    saveAs(blob, "data.csv");
+    saveAs(blob, dataName + ".csv");
   } else if (type == "xml") {
-    var data = "<?xml version='1.0' encoding='UTF-8'?>\n<results>\n";
+    var data = "<?xml version='1.0' encoding='UTF-8'?><results>";
     for(var j = 0; j <selected.length; j++) {
       var x = document.getElementById(selected[j]);
       var title = x.nextSibling.nextElementSibling.childNodes[1].children[0].innerText;
       var url = x.nextSibling.nextElementSibling.childNodes[1].children[1].innerText;
       var desc = x.nextSibling.nextElementSibling.childNodes[1].children[2].innerText;
-      data += "<result>\n<title>" + title + "</title>\n<url>" + url + "</url>\n<description>" + desc + "</description>\n</result>\n"
+      data += "<result><title>" + title + "</title><url>" + url + "</url><description>" + desc + "</description></result>";
     }
     data += "</results>";
-    var blob = new Blob([data], {type: "text/plain;charset=utf-8"});
-    saveAs(blob, "data.xml");
+    data = data.split('&').join('&amp;');
+    var blob = new Blob([data], {type: "application/xml;charset=utf-8"});
+    saveAs(blob, dataName + ".xml");
   }
 }
 

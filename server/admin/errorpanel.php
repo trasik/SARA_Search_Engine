@@ -1,11 +1,8 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>SARA-Admin</title>
+    <title>SARA-Error Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../../css/adminpanel.css">
@@ -14,20 +11,16 @@ session_start();
   <body>
     <ul>
       <li><h2>Administration Panel</h2></li>
-      <?php
-        if (isset($_SESSION['user'])) {
-          echo '<li><p>'.$_SESSION['user'].' is logged in</p></li>';
-        }
-      ?>
+      <li><a href="../../index.html">Home</a></li>
       <li><a href="dashboard.php">Dashboard</a></li>
       <li><a href="indexpanel.php">Indexer Panel</a></li>
       <li><a href="#">Error Panel</a></li>
-      <li><a href="logout.php">Logout</a></li>
+      <li><a href="searchpanel.php">Search Panel</a></li>
     </ul>
 
     <div class="container">
       <section class="error_info">
-        <h2>Indexer Panel</h2>
+        <h2>Error Panel</h2>
         <div class="error_prompt">
           <?php
           $myfile = fopen("error.txt", "r") or die("Unable to open file!");

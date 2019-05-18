@@ -43,7 +43,7 @@
         <a href="about.html#contact_info">Contact Us</a>
       </div>
     </div>
-    <a href="login.php">Admin</a>
+    <a href="server/admin/dashboard.php">Admin</a>
     <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
   </div>
   <div class="container-search">
@@ -52,7 +52,23 @@
         <input autocomplete="off" type="text" id="src-text" class="input" name="query" placeholder="Type to Search...">
         <button type="submit" id="submit" class="btn-submit">
           <i class="fa fa-search"></i>
-        </button>
+        </button><br>
+        <label class="checkContainer">Default
+          <input type="radio" name="checkOpt" value="default">
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkContainer">Check-Insensitive
+          <input type="radio" name="checkOpt" value="case">
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkContainer">Partial Word
+          <input type="radio" name="checkOpt" value="partial">
+          <span class="checkmark"></span>
+        </label>
+        <label class="checkContainer">Both
+          <input type="radio" name="checkOpt" value="both">
+          <span class="checkmark"></span>
+        </label>
       </form>
     </section>
   </div>
